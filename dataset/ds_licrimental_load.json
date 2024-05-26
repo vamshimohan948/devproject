@@ -1,0 +1,16 @@
+{
+	"name": "ds_licrimental_load",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_incremental_",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbluser"
+		}
+	}
+}
