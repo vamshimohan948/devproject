@@ -18,7 +18,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select tablename,LastLoadDate from tablecontrol where tablename=\r\n'@{pipeline().parameters.tablename}'",
+							"value": "select tablename,LastLoadDate from tblControl where tablename=\n'@{pipeline().parameters.tablename}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -88,7 +88,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select *\nfrom '@{pipeline().parameters.tablename}'\nwhere '@{pipeline().parameters.watermark}' >='@{activity('last_update').output.firstRow.LastLoadDate}'",
+							"value": "select * from @{pipeline().parameters.tablename} where '@{pipeline().parameters.watermark}' >='@{activity('last_update').output.firstRow.LastLoadDate}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
