@@ -22,8 +22,10 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table saleslt.Customer_Target",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -37,14 +39,20 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_extract_azure_sqldb_copy1",
-						"type": "DatasetReference"
+						"referenceName": "ds_extract_azure_sqldb",
+						"type": "DatasetReference",
+						"parameters": {
+							"source_table": "customer"
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_extract_azure_sqldb",
-						"type": "DatasetReference"
+						"referenceName": "ds_extract_azure_sqldb_copy1",
+						"type": "DatasetReference",
+						"parameters": {
+							"target_table": "Customer_Target"
+						}
 					}
 				]
 			}
