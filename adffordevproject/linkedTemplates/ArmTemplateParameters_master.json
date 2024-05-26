@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adffordevproject"
+		},
+		"LS_azure_sql_password": {
+			"value": ""
+		},
+		"ls_AzureSqlDatabase_password": {
+			"value": ""
+		},
+		"LS_AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://kvfordevproject.vault.azure.net/"
+		},
+		"LS_azure_sql_properties_typeProperties_server": {
+			"value": "serverfordbdev.database.windows.net"
+		},
+		"LS_azure_sql_properties_typeProperties_database": {
+			"value": "dbfordev"
+		},
+		"LS_azure_sql_properties_typeProperties_userName": {
+			"value": "dbfordev"
+		},
+		"ls_AzureSqlDatabase_properties_typeProperties_server": {
+			"value": "serverfordbdev.database.windows.net"
+		},
+		"ls_AzureSqlDatabase_properties_typeProperties_database": {
+			"value": "dbfordev"
+		},
+		"ls_AzureSqlDatabase_properties_typeProperties_userName": {
+			"value": "dbfordev"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
