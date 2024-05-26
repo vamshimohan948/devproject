@@ -5,6 +5,12 @@
 			"referenceName": "LS_azure_sql",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"source_table": {
+				"type": "String",
+				"defaultValue": "customer"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
 		"schema": [
@@ -74,7 +80,10 @@
 		],
 		"typeProperties": {
 			"schema": "SalesLT",
-			"table": "Customer_Target"
+			"table": {
+				"value": "@dataset().source_table",
+				"type": "Expression"
+			}
 		}
 	}
 }
