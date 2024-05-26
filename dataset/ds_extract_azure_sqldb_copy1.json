@@ -7,8 +7,7 @@
 		},
 		"parameters": {
 			"target_table": {
-				"type": "String",
-				"defaultValue": "Customer_Target"
+				"type": "String"
 			}
 		},
 		"annotations": [],
