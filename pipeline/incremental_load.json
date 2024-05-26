@@ -17,7 +17,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select [LastLoadDate] as LastLoadDate\nfrom tblControl",
+						"sqlReaderQuery": {
+							"value": "select tablename,LastLoadDate from tablecontrol where tablename=\r\n'@{pipeline().parameters.tablename}'",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -42,7 +45,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "Select max([Last_m]) as Last_m\nfrom tbluser\n",
+						"sqlReaderQuery": {
+							"value": "select max(@{pipeline().parameters.watermark}) last_m from \n@{pipeline().parameters.tablename}",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -82,7 +88,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select *\nfrom tbluser\nwhere Last_m >='@{activity('last_modified').output.firstRow.Last_m}'",
+							"value": "select *\nfrom '@{pipeline().parameters.tablename}'\nwhere '@{pipeline().parameters.watermark}' >='@{activity('last_update').output.firstRow.LastLoadDate}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -147,7 +153,7 @@
 						},
 						"TableName": {
 							"value": {
-								"value": "tbluser",
+								"value": "@{pipeline().parameters.tablename}",
 								"type": "Expression"
 							},
 							"type": "String"
@@ -160,6 +166,16 @@
 				}
 			}
 		],
+		"parameters": {
+			"tablename": {
+				"type": "string",
+				"defaultValue": "tbluser"
+			},
+			"watermark": {
+				"type": "string",
+				"defaultValue": "Last_m"
+			}
+		},
 		"folder": {
 			"name": "Framework"
 		},
